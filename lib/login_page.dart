@@ -8,17 +8,58 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  // methods of widgets
+
+  // name method
+  Widget _buildName() {
+    return SizedBox(   // it gives custom height and width
+      height: MediaQuery.of(context).size.height * 0.06,
+      child: TextFormField(
+        decoration: InputDecoration(
+          filled: true,
+          fillColor: Colors.deepPurple.shade50,
+          border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(20),
+            borderSide: BorderSide.none,
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(),
-        body: SafeArea(
-            child: Form(child: Column(
-              children: [
-                TextFormField(),
-              ],
-            ),),
-        ),
+      backgroundColor: Colors.grey.shade50,
+      appBar: AppBar(
+        title: Text("User Details Form"),
+        centerTitle: true,
+        backgroundColor: Colors.deepPurple.shade100,
+        toolbarHeight: 80,
+        // shape: Border(bottom: BorderSide(width: 0.5)),
+      ),
+      body: SafeArea(
+          child: Form(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: 30,),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 5, left: 12),
+                        child: Text( "Enter Your Name : ",
+                          style: TextStyle(
+                              fontSize: 15,
+                          ),
+                        ),
+                      ),
+                      _buildName(),
+                    ],
+                ),
+              ),
+          ),
+      ),
     );
   }
 }
