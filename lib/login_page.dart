@@ -59,6 +59,7 @@ class _LoginPageState extends State<LoginPage> {
       ),
       body: SafeArea(
           child: Form(
+            key: _formKey,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25),
                 child: Column(
