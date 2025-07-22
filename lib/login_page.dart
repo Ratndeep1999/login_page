@@ -32,6 +32,7 @@ class _LoginPageState extends State<LoginPage> {
             return "Name is too short" ;
           }
         },
+
         controller: _nameController,
         keyboardType: TextInputType.name,
         decoration: InputDecoration(
