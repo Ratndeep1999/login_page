@@ -9,14 +9,16 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
 
-  // Form key
-  final _formKey = GlobalKey<FormState>();
-
   // Variables
   late String _name ;
 
+  // Form key
+  final _formKey = GlobalKey<FormState>();
+
+
   // Controllers
   final TextEditingController _nameController = TextEditingController();
+
 
 
   // methods of widgets
@@ -37,6 +39,9 @@ class _LoginPageState extends State<LoginPage> {
         cursorHeight: 20,
         controller: _nameController,
         keyboardType: TextInputType.name,
+        onSaved: (value) {
+          value = _name ;
+        },
         decoration: InputDecoration(
           filled: true,
           fillColor: Colors.deepPurple.shade50,
@@ -78,6 +83,19 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                       _buildName(),
+                      SizedBox(height: 30,),
+
+                      // Button
+                      TextButton(
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {
+                              debugPrint("Processing......");
+                            } else {
+                              debugPrint("Please Fill all Details Properly");
+                            }
+                          },
+                          child: Text("Submit"),
+                      ),
                     ],
                 ),
               ),
