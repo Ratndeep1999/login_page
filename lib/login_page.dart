@@ -33,7 +33,8 @@ class _LoginPageState extends State<LoginPage> {
           }
           return null ;
         },
-
+        minLines: 1,
+        cursorHeight: 20,
         controller: _nameController,
         keyboardType: TextInputType.name,
         decoration: InputDecoration(
