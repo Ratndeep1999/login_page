@@ -11,10 +11,9 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final _formKey = GlobalKey<FormState>(); // variable for Form key
 
-  final TextEditingController _firstName =
-      TextEditingController(); // for First name
+  final _formKey = GlobalKey<FormState>(); // variable for Form key
+  final TextEditingController _firstName = TextEditingController(); // for First name
   final _surName = TextEditingController(); // for Surname
   final _phoneNumber = TextEditingController(); // for Phone number
 
