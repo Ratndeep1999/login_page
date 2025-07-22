@@ -9,8 +9,6 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
 
-  // Variables
-  late String _name ;
 
   // Form key
   final _formKey = GlobalKey<FormState>();
@@ -25,7 +23,7 @@ class _LoginPageState extends State<LoginPage> {
   // name method
   Widget _buildName() {
     return SizedBox(   // it gives custom height and width
-      height: MediaQuery.of(context).size.height * 0.06,
+      height: MediaQuery.of(context).size.height * 0.08,
       child: TextFormField(
         validator: (value) {
           if (value == null || value.isEmpty) {
@@ -39,9 +37,6 @@ class _LoginPageState extends State<LoginPage> {
         cursorHeight: 20,
         controller: _nameController,
         keyboardType: TextInputType.name,
-        onSaved: (value) {
-          value = _name ;
-        },
         decoration: InputDecoration(
           filled: true,
           fillColor: Colors.deepPurple.shade50,
@@ -62,44 +57,48 @@ class _LoginPageState extends State<LoginPage> {
         title: Text("User Details Form"),
         centerTitle: true,
         backgroundColor: Colors.deepPurple.shade100,
-        toolbarHeight: 80,
+        toolbarHeight: 60,
         // shape: Border(bottom: BorderSide(width: 0.5)),
       ),
-      body: SafeArea(
-          child: Form(
-            key: _formKey,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(height: 30,),
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 5, left: 12),
-                        child: Text( "Enter Your Name : ",
-                          style: TextStyle(
-                              fontSize: 15,
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: SafeArea(
+            child: Form(
+              key: _formKey,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(height: 30,),
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 5, left: 12),
+                          child: Text( "Enter Your Name : ",
+                            style: TextStyle(
+                                fontSize: 15,
+                            ),
                           ),
                         ),
-                      ),
-                      _buildName(),
-                      SizedBox(height: 30,),
+                        _buildName(),
+                        SizedBox(height: 30,),
 
-                      // Button
-                      TextButton(
-                          onPressed: () {
-                            if (_formKey.currentState!.validate()) {
-                              debugPrint("Processing......");
-                            } else {
-                              debugPrint("Please Fill all Details Properly");
-                            }
-                          },
-                          child: Text("Submit"),
-                      ),
-                    ],
+                        // Button
+                        ElevatedButton(
+                            onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            debugPrint("Processing......");
+                          } else {
+                            debugPrint("Please Fill all Details Properly");
+                          }
+
+                        },
+                            child: Text("Submit"),
+                        ),
+                      ],
+                  ),
                 ),
-              ),
-          ),
+            ),
+        ),
       ),
     );
   }
