@@ -8,13 +8,32 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  // methods of widgets
 
+  // Form key
+  final _formKey = GlobalKey<FormState>();
+
+  // Variables
+  late String _name ;
+
+  // Controllers
+  final TextEditingController _nameController = TextEditingController();
+
+
+  // methods of widgets
   // name method
   Widget _buildName() {
     return SizedBox(   // it gives custom height and width
       height: MediaQuery.of(context).size.height * 0.06,
       child: TextFormField(
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return "Please enter your name" ;
+          } else if ( value.length < 3 ) {
+            return "Name is too short" ;
+          }
+        },
+        controller: _nameController,
+        keyboardType: TextInputType.name,
         decoration: InputDecoration(
           filled: true,
           fillColor: Colors.deepPurple.shade50,
