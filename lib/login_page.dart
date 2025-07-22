@@ -31,6 +31,7 @@ class _LoginPageState extends State<LoginPage> {
           } else if ( value.length < 3 ) {
             return "Name is too short" ;
           }
+          return null ;
         },
 
         controller: _nameController,
