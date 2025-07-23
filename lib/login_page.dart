@@ -10,13 +10,17 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   // Form key
   final _formKey = GlobalKey<FormState>();
-  final bool _isPasswordVisible = true ;
+  // for password visible
+  bool _isPasswordVisible = true ;
+  // to store password
+  // final String _password = " " ;
+
 
   // Controllers
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _conformPasswordController = TextEditingController();
+  // final TextEditingController _conformPasswordController = TextEditingController();
 
   // methods of widgets
   // name method
@@ -25,6 +29,7 @@ class _LoginPageState extends State<LoginPage> {
       // it gives custom height and width
       height: MediaQuery.of(context).size.height * 0.08,
       child: TextFormField(
+        controller: _nameController,
         validator: (value) {
           if (value == null || value.isEmpty) {
             return "Please enter your name";
@@ -38,7 +43,6 @@ class _LoginPageState extends State<LoginPage> {
         },
         minLines: 1,
         cursorHeight: 20,
-        controller: _nameController,
         keyboardType: TextInputType.name,
         decoration: InputDecoration(
           hintText: "eg.    Ratndeep Chandankhede",
@@ -59,6 +63,7 @@ class _LoginPageState extends State<LoginPage> {
       // it gives custom height and width
       height: MediaQuery.of(context).size.height * 0.08,
       child: TextFormField(
+        controller: _emailController,
         validator: (value) {
           if (value == null || value.isEmpty) {
             return "Please enter your email";
@@ -70,7 +75,6 @@ class _LoginPageState extends State<LoginPage> {
         },
         minLines: 1,
         cursorHeight: 20,
-        controller: _emailController,
         keyboardType: TextInputType.emailAddress,
         decoration: InputDecoration(
           hintText: "eg. abc@gmail.com",
@@ -114,16 +118,16 @@ class _LoginPageState extends State<LoginPage> {
         decoration: InputDecoration(
           suffixIcon:
           IconButton(
-              onPressed: () {
+              icon:
+              _isPasswordVisible ?
+              Icon(Icons.visibility_off) :
+              Icon(Icons.visibility) ,
+            onPressed: () {
+                _isPasswordVisible = !_isPasswordVisible ;
                 setState(() {
-                  _isPasswordVisible == !_isPasswordVisible ;
+
                 });
-              },
-              icon: Icon(
-                  _isPasswordVisible ?
-                  Icons.visibility :
-                  Icons.visibility_off
-              )
+            },
           ),
           hintText: "eg. abc@123",
           filled: true,
@@ -153,7 +157,7 @@ class _LoginPageState extends State<LoginPage> {
         // shape: Border(bottom: BorderSide(width: 0.5)),
       ),
       body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
+        // scrollDirection: Axis.vertical,
         child: SafeArea(
           child: Form(
             key: _formKey,
@@ -193,7 +197,6 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   _buildPassword(), // for Password
 
-                  SizedBox(height: 20),
 
                   SizedBox(height: 20),
                   // Button
@@ -210,7 +213,6 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
 
-                  InkWell()
                 ],
               ),
             ),
