@@ -167,21 +167,7 @@ class _LoginPageState extends State<LoginPage> {
       child: TextFormField(
         controller: _conformPasswordController,
         validator: (value) {
-          if (value == null || value.isEmpty) {
-            return "Please enter your password";
-          } else if (value.length < 8) {
-            return "Password must be at least 8 characters" ;
-          } else if ( value.contains(' ') ) {  // if space input then it return true
-            return "Space is not allow" ;
-          } else if (!RegExp(r'[A-Z]').hasMatch(value)) {
-            return "Password must contain at least one uppercase letter" ;
-          } else if (!RegExp(r'[a-z]').hasMatch(value)) {
-            return "Password must contain at least one lowercase letter" ;
-          } else if (!RegExp(r'[0-9]').hasMatch(value)) {
-            return "Password must contain at least one number " ;
-          } else if (!RegExp(r'[!@\$&*~_]').hasMatch(value)) {
-            return "Password must contain at least one special character (!@#\$&*~_)" ;
-          } else if (value != _password) {
+          if (value != _password) {
             return "Password and Conform Password is not same";
           }
           return null;
@@ -239,7 +225,7 @@ class _LoginPageState extends State<LoginPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: 30),
+                  SizedBox(height: 12),
 
                   Padding(
                     padding: const EdgeInsets.only(bottom: 5, left: 12),
@@ -249,7 +235,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   _buildName(), // fro name
-                  SizedBox(height: 20),
+                  SizedBox(height: 6),
 
                   Padding(
                     padding: const EdgeInsets.only(bottom: 5, left: 12),
@@ -259,7 +245,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   _buildEmail(), // for email
-                  SizedBox(height: 20),
+                  SizedBox(height: 6),
 
                   Padding(
                     padding: const EdgeInsets.only(bottom: 5, left: 12),
@@ -269,7 +255,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   _buildPassword(), // for Password
-                  SizedBox(height: 20),
+                  SizedBox(height: 6),
 
                   Padding(
                     padding: const EdgeInsets.only(bottom: 5, left: 12),
@@ -278,17 +264,17 @@ class _LoginPageState extends State<LoginPage> {
                       style: TextStyle(fontSize: 15),
                     ),
                   ),
-                  _buildConformPassword(), // for Password
-                  SizedBox(height: 20),
+                  _buildConformPassword(), // for Conform Password
+                  SizedBox(height: 6),
 
-                  SizedBox(height: 20),
+                  //SizedBox(height: 6),
                   // Button
                   Center(
                     child: ElevatedButton(
                       onPressed: () {
 
                         _nameController.text = "Ratndeep" ;
-                        // _emailController.text = "ratndeep@gmail.com" ;
+                        _emailController.text = "ratndeep@gmail.com" ;
                         // _passwordController.text = "Rajratna@121" ;
 
                         if (_formKey.currentState!.validate()) {
