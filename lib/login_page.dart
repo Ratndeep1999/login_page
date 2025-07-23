@@ -10,6 +10,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   // Form key
   final _formKey = GlobalKey<FormState>();
+  final bool _isPasswordVisible = true ;
 
   // Controllers
   final TextEditingController _nameController = TextEditingController();
@@ -93,16 +94,37 @@ class _LoginPageState extends State<LoginPage> {
         validator: (value) {
           if (value == null || value.isEmpty) {
             return "Please enter your password";
-          } // Regular Expression for valid email pattern
-          else if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w]{2,4}$').hasMatch(value)) {
-            return "Please enter a valid email address";
+          } else if (value.length < 8) {
+            return "Password must be at least 8 characters" ;
+          } else if (!RegExp(r'[A-Z]').hasMatch(value)) {
+            return "Password must contain at least one uppercase letter" ;
+          } else if (!RegExp(r'[a-z]').hasMatch(value)) {
+            return "Password must contain at least one lowercase letter" ;
+          } else if (!RegExp(r'[0-9]').hasMatch(value)) {
+            return "Password must contain at least one number " ;
+          } else if (!RegExp(r'[!@\$&*~_]').hasMatch(value)) {
+            return "Password must contain at least one special character (!@#\$&*~_)" ;
           }
           return null;
         },
+        obscureText: _isPasswordVisible,
         minLines: 1,
         cursorHeight: 20,
         controller: _passwordController,
         decoration: InputDecoration(
+          suffixIcon:
+          IconButton(
+              onPressed: () {
+                setState(() {
+                  _isPasswordVisible == !_isPasswordVisible ;
+                });
+              },
+              icon: Icon(
+                  _isPasswordVisible ?
+                  Icons.visibility :
+                  Icons.visibility_off
+              )
+          ),
           hintText: "eg. abc@123",
           filled: true,
           fillColor: Colors.deepPurple.shade50,
@@ -140,6 +162,7 @@ class _LoginPageState extends State<LoginPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(height: 30),
+
                   Padding(
                     padding: const EdgeInsets.only(bottom: 5, left: 12),
                     child: Text(
@@ -158,8 +181,8 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   _buildEmail(), // for email
-
                   SizedBox(height: 20),
+
                   Padding(
                     padding: const EdgeInsets.only(bottom: 5, left: 12),
                     child: Text(
@@ -167,7 +190,7 @@ class _LoginPageState extends State<LoginPage> {
                       style: TextStyle(fontSize: 15),
                     ),
                   ),
-                  _buildName(), // fro Password
+                  _buildPassword(), // for Password
 
                   SizedBox(height: 20),
 
@@ -185,6 +208,8 @@ class _LoginPageState extends State<LoginPage> {
                       child: Text("Submit"),
                     ),
                   ),
+
+                  InkWell()
                 ],
               ),
             ),
