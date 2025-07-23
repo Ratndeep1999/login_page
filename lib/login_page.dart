@@ -14,6 +14,8 @@ class _LoginPageState extends State<LoginPage> {
   // Controllers
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _conformPasswordController = TextEditingController();
 
   // methods of widgets
   // name method
@@ -82,7 +84,39 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  //
+  // password method
+  Widget _buildPassword() {
+    return SizedBox(
+      // it gives custom height and width
+      height: MediaQuery.of(context).size.height * 0.08,
+      child: TextFormField(
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return "Please enter your password";
+          } // Regular Expression for valid email pattern
+          else if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w]{2,4}$').hasMatch(value)) {
+            return "Please enter a valid email address";
+          }
+          return null;
+        },
+        minLines: 1,
+        cursorHeight: 20,
+        controller: _passwordController,
+        decoration: InputDecoration(
+          hintText: "eg. abc@123",
+          filled: true,
+          fillColor: Colors.deepPurple.shade50,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(20),
+            borderSide: BorderSide.none,
+          ),
+        ),
+      ),
+    );
+  }
+
+  // conform password method
+
 
   @override
   Widget build(BuildContext context) {
@@ -126,6 +160,14 @@ class _LoginPageState extends State<LoginPage> {
                   _buildEmail(), // for email
 
                   SizedBox(height: 20),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 5, left: 12),
+                    child: Text(
+                      "Password : ",
+                      style: TextStyle(fontSize: 15),
+                    ),
+                  ),
+                  _buildName(), // fro Password
 
                   SizedBox(height: 20),
 
