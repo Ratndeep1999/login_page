@@ -13,7 +13,7 @@ class _LoginPageState extends State<LoginPage> {
   // for password visible
   bool _isPasswordVisible = true ;
   // to store password
-  // final String _password = " " ;
+  String _password = "" ;
 
 
   // Controllers
@@ -95,6 +95,7 @@ class _LoginPageState extends State<LoginPage> {
       // it gives custom height and width
       height: MediaQuery.of(context).size.height * 0.08,
       child: TextFormField(
+        controller: _passwordController,
         validator: (value) {
           if (value == null || value.isEmpty) {
             return "Please enter your password";
@@ -112,9 +113,15 @@ class _LoginPageState extends State<LoginPage> {
           return null;
         },
         obscureText: _isPasswordVisible,
+        onSaved: (value) {
+          // Assign value to _password if it's not null, otherwise assign an empty string ""
+          _password = value ?? "" ;
+        },
+        onChanged: (value) {
+          value = _password;
+        },
         minLines: 1,
         cursorHeight: 20,
-        controller: _passwordController,
         decoration: InputDecoration(
           suffixIcon:
           IconButton(
@@ -203,11 +210,22 @@ class _LoginPageState extends State<LoginPage> {
                   Center(
                     child: ElevatedButton(
                       onPressed: () {
+
+                        _nameController.text = "Ratndeep" ;
+                        _emailController.text = "ratndeep@gmail.com" ;
+                        _passwordController.text = "Rajratna@121" ;
+
                         if (_formKey.currentState!.validate()) {
+                          // to collect all form values at once after validation.
+                          _formKey.currentState!.save(); // // This will trigger onSaved()
                           debugPrint("Processing Data........");
+                          debugPrint("Password : $_password");
+
+                          // debugPrint(_password);
                         } else {
                           debugPrint("Please Fill all Details Properly");
                         }
+
                       },
                       child: Text("Submit"),
                     ),
