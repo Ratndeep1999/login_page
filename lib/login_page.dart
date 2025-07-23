@@ -168,12 +168,18 @@ class _LoginPageState extends State<LoginPage> {
         controller: _conformPasswordController,
         validator: (value) {
           if (value != _password) {
-            return "Password and Conform Password is not same";
+            return "Password and Conform Password are not same";
           }
           return null;
         },
         obscureText: _isConformPasswordVisible,
-        onChanged: (value) {},
+        // onChanged is triggered whenever the user types in the field.
+        // parameter value holds what the user just typed.
+        onChanged: (value) {
+          // this is CallBack trigger re-validation of the form whenever user types.
+          // Force re-validation of the form (especially this field)
+          _formKey.currentState!.validate();
+        },
         minLines: 1,
         cursorHeight: 20,
         decoration: InputDecoration(
@@ -275,7 +281,7 @@ class _LoginPageState extends State<LoginPage> {
 
                         _nameController.text = "Ratndeep" ;
                         _emailController.text = "ratndeep@gmail.com" ;
-                        // _passwordController.text = "Rajratna@121" ;
+                        _passwordController.text = "Rajratna@121" ;
 
                         if (_formKey.currentState!.validate()) {
                           // to collect all form values at once after validation.
