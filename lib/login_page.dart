@@ -12,8 +12,10 @@ class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
   // for password visible
   bool _isPasswordVisible = true ;
-  // to store password
+
+  // to store input data
   String _password = "" ;
+
 
 
   // Controllers
