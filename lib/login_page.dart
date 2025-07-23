@@ -20,7 +20,7 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  // final TextEditingController _conformPasswordController = TextEditingController();
+  final TextEditingController _conformPasswordController = TextEditingController();
 
   // methods of widgets
   // name method
@@ -156,9 +156,65 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   // conform password method
-  // Widget _buildConformPassword() {
-  //
-  // }
+  Widget _buildConformPassword() {
+    return SizedBox(
+      // it gives custom height and width
+      height: MediaQuery.of(context).size.height * 0.08,
+      child: TextFormField(
+        controller: _conformPasswordController,
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return "Please enter your password";
+          } else if (value.length < 8) {
+            return "Password must be at least 8 characters" ;
+          } else if ( value.contains(' ') ) {  // if space input then it return true
+            return "Space is not allow" ;
+          } else if (!RegExp(r'[A-Z]').hasMatch(value)) {
+            return "Password must contain at least one uppercase letter" ;
+          } else if (!RegExp(r'[a-z]').hasMatch(value)) {
+            return "Password must contain at least one lowercase letter" ;
+          } else if (!RegExp(r'[0-9]').hasMatch(value)) {
+            return "Password must contain at least one number " ;
+          } else if (!RegExp(r'[!@\$&*~_]').hasMatch(value)) {
+            return "Password must contain at least one special character (!@#\$&*~_)" ;
+          }
+          return null;
+        },
+        obscureText: _isPasswordVisible,
+        onSaved: (value) {
+          // Assign value to _password if it's not null, otherwise assign an empty string ""
+          _password = value ?? "" ;
+        },
+        onChanged: (value) {
+          value = _password;
+        },
+        minLines: 1,
+        cursorHeight: 20,
+        decoration: InputDecoration(
+          suffixIcon:
+          IconButton(
+            icon:
+            _isPasswordVisible ?
+            Icon(Icons.visibility_off) :
+            Icon(Icons.visibility) ,
+            onPressed: () {
+              _isPasswordVisible = !_isPasswordVisible ;
+              setState(() {
+
+              });
+            },
+          ),
+          hintText: "eg. abc@123",
+          filled: true,
+          fillColor: Colors.deepPurple.shade50,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(20),
+            borderSide: BorderSide.none,
+          ),
+        ),
+      ),
+    );
+  }
 
 
 
@@ -213,7 +269,17 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   _buildPassword(), // for Password
+                  SizedBox(height: 20),
 
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 5, left: 12),
+                    child: Text(
+                      "Conform Password : ",
+                      style: TextStyle(fontSize: 15),
+                    ),
+                  ),
+                  _buildConformPassword(), // for Password
+                  SizedBox(height: 20),
 
                   SizedBox(height: 20),
                   // Button
