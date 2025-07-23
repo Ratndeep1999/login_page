@@ -35,8 +35,9 @@ class _LoginPageState extends State<LoginPage> {
             return "Please enter your name";
           } else if (value.length < 3) {
             return "Name is too short";
+            //  checks if the value contains anything other than letters or spaces, and returns true if it does
           } else if (!RegExp(r"^[a-zA-Z\s]+$").hasMatch(value)) {
-            // this restrict to input only letters
+            // this restrict to input only letters and spaces
             return "Please enter letters only";
           }
           return null;
@@ -64,10 +65,14 @@ class _LoginPageState extends State<LoginPage> {
       height: MediaQuery.of(context).size.height * 0.08,
       child: TextFormField(
         controller: _emailController,
-        validator: (value) {
+        validator: (value) {  // !EmailValidator.validate(value)  i can use this also using EmailValidator package
           if (value == null || value.isEmpty) {
             return "Please enter your email";
-          } // Regular Expression for valid email pattern
+          }
+          if ( value.contains(' ') ) {  // if space trigger then true
+            return "Space is not allow";
+          }
+          // Regular Expression for valid email pattern
           else if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w]{2,4}$').hasMatch(value)) {
             return "Please enter a valid email address";
           }
@@ -101,6 +106,8 @@ class _LoginPageState extends State<LoginPage> {
             return "Please enter your password";
           } else if (value.length < 8) {
             return "Password must be at least 8 characters" ;
+          } else if ( value.contains(' ') ) {  // if space input then it return true
+            return "Space is not allow" ;
           } else if (!RegExp(r'[A-Z]').hasMatch(value)) {
             return "Password must contain at least one uppercase letter" ;
           } else if (!RegExp(r'[a-z]').hasMatch(value)) {
@@ -149,6 +156,9 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   // conform password method
+  // Widget _buildConformPassword() {
+  //
+  // }
 
 
 
@@ -212,8 +222,8 @@ class _LoginPageState extends State<LoginPage> {
                       onPressed: () {
 
                         _nameController.text = "Ratndeep" ;
-                        _emailController.text = "ratndeep@gmail.com" ;
-                        _passwordController.text = "Rajratna@121" ;
+                        // _emailController.text = "ratndeep@gmail.com" ;
+                        // _passwordController.text = "Rajratna@121" ;
 
                         if (_formKey.currentState!.validate()) {
                           // to collect all form values at once after validation.
