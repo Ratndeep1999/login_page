@@ -12,6 +12,8 @@ class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
   // for password visible
   bool _isPasswordVisible = true ;
+  bool _isConformPasswordVisible = true ;
+
 
   // to store input data
   String _password = "" ;
@@ -126,8 +128,8 @@ class _LoginPageState extends State<LoginPage> {
           // Assign value to _password if it's not null, otherwise assign an empty string ""
           _password = value ?? "" ;
         },
-        onChanged: (value) {
-          value = _password;
+        onChanged: (value) {  // Now _password always contains (Real time) latest input
+          _password = value ;
         },
         minLines: 1,
         cursorHeight: 20,
@@ -179,28 +181,24 @@ class _LoginPageState extends State<LoginPage> {
             return "Password must contain at least one number " ;
           } else if (!RegExp(r'[!@\$&*~_]').hasMatch(value)) {
             return "Password must contain at least one special character (!@#\$&*~_)" ;
+          } else if (value != _password) {
+            return "Password and Conform Password is not same";
           }
           return null;
         },
-        obscureText: _isPasswordVisible,
-        onSaved: (value) {
-          // Assign value to _password if it's not null, otherwise assign an empty string ""
-          _password = value ?? "" ;
-        },
-        onChanged: (value) {
-          value = _password;
-        },
+        obscureText: _isConformPasswordVisible,
+        onChanged: (value) {},
         minLines: 1,
         cursorHeight: 20,
         decoration: InputDecoration(
           suffixIcon:
           IconButton(
             icon:
-            _isPasswordVisible ?
+            _isConformPasswordVisible ?
             Icon(Icons.visibility_off) :
             Icon(Icons.visibility) ,
             onPressed: () {
-              _isPasswordVisible = !_isPasswordVisible ;
+              _isConformPasswordVisible = !_isConformPasswordVisible ;
               setState(() {
 
               });
