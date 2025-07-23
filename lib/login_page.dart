@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -25,6 +26,8 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _conformPasswordController = TextEditingController();
+  final TextEditingController _mobileNumberController = TextEditingController();
+
 
   // methods of widgets
   // name method
@@ -208,6 +211,31 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
+  // mobile number field
+  Widget _buildMobileNumber() {
+    return SizedBox(
+      height: MediaQuery.of(context).size.height * 0.08,
+      child: TextFormField(
+        controller: _mobileNumberController,
+        validator: ( value ) {
+
+        },
+        keyboardType: TextInputType.number,
+        // This restrict to input only digits not other char
+        inputFormatters: [ FilteringTextInputFormatter.digitsOnly ],
+        decoration: InputDecoration(
+          hintText: "eg. 8551 830 830",
+          filled: true,
+          fillColor: Colors.deepPurple.shade50,
+          border: OutlineInputBorder(
+            borderSide: BorderSide.none,
+            borderRadius: BorderRadius.circular(20),
+          ),
+        ),
+      ),
+    );
+  }
+
 
 
   @override
@@ -271,6 +299,16 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   _buildConformPassword(), // for Conform Password
+                  SizedBox(height: 6),
+
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 5, left: 12),
+                    child: Text(
+                      "Mobile Number : ",
+                      style: TextStyle(fontSize: 15),
+                    ),
+                  ),
+                  _buildMobileNumber(), // for Conform Password
                   SizedBox(height: 6),
 
                   //SizedBox(height: 6),
