@@ -38,6 +38,7 @@ class _LoginPageState extends State<LoginPage> {
         controller: _nameController,
         keyboardType: TextInputType.name,
         decoration: InputDecoration(
+          hintText: "e.g Ratndeep Chandankhede",
           filled: true,
           fillColor: Colors.deepPurple.shade50,
           border: OutlineInputBorder(
