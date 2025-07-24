@@ -446,7 +446,7 @@ class _LoginPageState extends State<LoginPage> {
                                 if ( _gender.isEmpty || _gender == '' || _gender == 'Not selected' ) {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(
-                                          content: Text("Chakka "),
+                                          content: Text("Please select your gender...."),
                                       ),
                                   );
                                 }
