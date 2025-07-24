@@ -14,6 +14,7 @@ class _LoginPageState extends State<LoginPage> {
   // for password visible
   bool _isPasswordVisible = true ;
   bool _isConformPasswordVisible = true ;
+  String _selectGender = ' ' ;
 
   // to store input data
   String _password = "" ;
@@ -263,7 +264,7 @@ class _LoginPageState extends State<LoginPage> {
           return null ;
         },
         minLines: 6,
-        maxLines:7,
+        maxLines:8,
         decoration: InputDecoration(
           hintText: "eg. street name, city name, state, postal code",
           filled: true,
@@ -276,6 +277,31 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
+  
+  // gender field
+  // Widget _buildGender() {
+  //   return Row(
+  //     children: [
+  //       Radio(
+  //         activeColor: Colors.black,
+  //           value: 'Male',
+  //           groupValue: _selectGender,
+  //           onChanged: (value) {
+  //             _selectGender = value ?? '' ;
+  //           }
+  //       ),
+  //
+  //       Radio(
+  //           activeColor: Colors.black,
+  //           value: 'Male',
+  //           groupValue: _selectGender,
+  //           onChanged: (value) {
+  //             _selectGender = value ?? '' ;
+  //           }
+  //       ),
+  //     ],
+  //   );
+  // }
 
 
 
@@ -378,6 +404,18 @@ class _LoginPageState extends State<LoginPage> {
                         // Button
                         Column(
                           children: [
+
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 5, left: 15),
+                              child: Text(
+                                "Select gender : ",
+                                style: TextStyle(fontSize: 15),
+                              ),
+                            ),
+
+                            // custom widget for gender
+                            // _buildGender(),
+
                             ElevatedButton(
                               onPressed: () {
 
