@@ -442,7 +442,7 @@ class _LoginPageState extends State<LoginPage> {
                                 // _passwordController.text = "Rajratna@121" ;
                                 // _addressController.text = "Bhim wadi, thool layout, sindhi meghe, wardha, 442001" ;
 
-
+                                // show snackBar if condition meet
                                 if ( _gender.isEmpty || _gender == '' || _gender == 'Not selected' ) {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(
