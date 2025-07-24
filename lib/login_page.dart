@@ -279,29 +279,31 @@ class _LoginPageState extends State<LoginPage> {
   }
   
   // gender field
-  // Widget _buildGender() {
-  //   return Row(
-  //     children: [
-  //       Radio(
-  //         activeColor: Colors.black,
-  //           value: 'Male',
-  //           groupValue: _selectGender,
-  //           onChanged: (value) {
-  //             _selectGender = value ?? '' ;
-  //           }
-  //       ),
-  //
-  //       Radio(
-  //           activeColor: Colors.black,
-  //           value: 'Male',
-  //           groupValue: _selectGender,
-  //           onChanged: (value) {
-  //             _selectGender = value ?? '' ;
-  //           }
-  //       ),
-  //     ],
-  //   );
-  // }
+  Widget _buildGender() {
+    return Row(
+      children: [
+        Radio(
+          // activeColor: Colors.black,
+            value: 'Male',
+            groupValue: _selectGender,
+            onChanged: (value) {
+              _selectGender = value ?? '' ;
+              setState(() {  });
+            }
+        ),
+
+        Radio(
+            // activeColor: Colors.black,
+            value: 'Male',
+            groupValue: _selectGender,
+            onChanged: (value) {
+              _selectGender = value ?? '' ;
+              setState(() {  });
+            }
+        ),
+      ],
+    );
+  }
 
 
 
@@ -414,7 +416,7 @@ class _LoginPageState extends State<LoginPage> {
                             ),
 
                             // custom widget for gender
-                            // _buildGender(),
+                            _buildGender(),
 
                             ElevatedButton(
                               onPressed: () {
