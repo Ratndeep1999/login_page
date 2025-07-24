@@ -14,7 +14,7 @@ class _LoginPageState extends State<LoginPage> {
   // for password visible
   bool _isPasswordVisible = true ;
   bool _isConformPasswordVisible = true ;
-  String _selectGender = ' ' ;
+  String _gender = 'Not selected';
 
   // to store input data
   String _password = "" ;
@@ -251,7 +251,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget _buildAddress() {
     return SizedBox(
       width: MediaQuery.of(context).size.width * 0.4 ,
-      height: MediaQuery.of(context).size.height * 0.266,
+      height: MediaQuery.of(context).size.height * 0.23,
       child: TextFormField(
         controller: _addressController,
         validator: ( value ) {
@@ -263,7 +263,7 @@ class _LoginPageState extends State<LoginPage> {
           }
           return null ;
         },
-        minLines: 6,
+        minLines: 7,
         maxLines:8,
         decoration: InputDecoration(
           hintText: "eg. street name, city name, postal code, state",
@@ -280,32 +280,43 @@ class _LoginPageState extends State<LoginPage> {
   
   // gender field
   Widget _buildGender() {
-    return
-      Row(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Radio(
-          // activeColor: Colors.black,
-            value: 'Male',
-            groupValue: _selectGender,
+        RadioMenuButton(
+          style: ButtonStyle(elevation: WidgetStatePropertyAll(20)),
+            value: "Male",
+            groupValue: _gender,
             onChanged: (value) {
-              _selectGender = value ?? '' ;
-              setState(() {  });
-            }
+              setState(() {
+                _gender = value ?? '' ;
+              });
+            },
+            child: Icon(Icons.male),
         ),
-
-        Radio(
-            // activeColor: Colors.black,
-            value: 'Male',
-            groupValue: _selectGender,
-            onChanged: (value) {
-              _selectGender = value ?? '' ;
-              setState(() {  });
-            }
+        RadioMenuButton(
+          value: "Female",
+          groupValue: _gender,
+          onChanged: (value) {
+            setState(() {
+              _gender = value ?? '' ;
+            });
+          },
+          child: Text("Female"),
+        ),
+        RadioMenuButton(
+          value: "Other",
+          groupValue: _gender,
+          onChanged: (value) {
+            setState(() {
+              _gender = value ?? '' ;
+            });
+          },
+          child: Text("Other"),
         ),
       ],
     );
   }
-
 
 
   @override
@@ -384,49 +395,50 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                     _buildMobileNumber(), // for Conform Password
-                    SizedBox(height: MediaQuery.of(context).size.height * 0.0001 ),
-
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 5, left: 12),
-                      child: Text(
-                        "Address : ",
-                        style: TextStyle(fontSize: 15),
-                      ),
-                    ),
+                    // SizedBox(height: MediaQuery.of(context).size.height * 0.0001 ),
 
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-
-                        _buildAddress(),  // address custom widget
-
-                        // for address
-                        // SizedBox(height: MediaQuery.of(context).size.height * 0.0001 ),
-
-                        // SizedBox(height: MediaQuery.of(context).size.height * 0.0001 ),
-                        // Button
+                        // Address column
                         Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-
                             Padding(
-                              padding: const EdgeInsets.only(bottom: 5, left: 15),
+                              padding: const EdgeInsets.only(bottom: 5, left: 12),
                               child: Text(
-                                "Select gender : ",
+                                "Address : ",
                                 style: TextStyle(fontSize: 15),
                               ),
                             ),
+                            // custom widget _buildAddress
+                            _buildAddress(),
+                            SizedBox(width: MediaQuery.of(context).size.width * 0.001,),
+                          ],
+                        ),
 
-                            // custom widget for gender
+                        SizedBox(width: MediaQuery.of(context).size.width * 0.1 ),
+
+                        // gender and button column
+                        Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(),
+                              child: Text(
+                                "Gender : ",
+                                style: TextStyle(fontSize: 15),
+                              ),
+                            ),
+                            // Custom widget _buildGender
                             _buildGender(),
 
+                            // Button
                             ElevatedButton(
                               onPressed: () {
-
                                 // _nameController.text = "Ratndeep" ;
                                 // _emailController.text = "ratndeep@gmail.com" ;
                                 // _passwordController.text = "Rajratna@121" ;
                                 // _addressController.text = "Bhim wadi, thool layout, sindhi meghe, wardha, 442001" ;
-
                                 if (_formKey.currentState!.validate()) {
                                   // to collect all form values at once after validation.
                                   _formKey.currentState!.save(); // // This will trigger onSaved()
@@ -437,7 +449,6 @@ class _LoginPageState extends State<LoginPage> {
                                 } else {
                                   debugPrint("Please Fill all Details Properly");
                                 }
-
                               },
                               child: Text("Submit"),
                             ),
@@ -446,9 +457,6 @@ class _LoginPageState extends State<LoginPage> {
 
                       ],
                     ),
-
-
-
                   ],
                 ),
               ),
