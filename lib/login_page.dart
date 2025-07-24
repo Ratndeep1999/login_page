@@ -264,8 +264,10 @@ class _LoginPageState extends State<LoginPage> {
           return null ;
         },
         minLines: 7,
-        maxLines:8,
+        maxLines:12,
         decoration: InputDecoration(
+          prefixIcon: Icon(Icons.place),
+          // suffixIcon: Icon(Icons.place),
           hintText: "eg. street name, city name, postal code, state",
           filled: true,
           fillColor: Colors.deepPurple.shade50,
