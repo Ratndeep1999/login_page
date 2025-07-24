@@ -441,12 +441,22 @@ class _LoginPageState extends State<LoginPage> {
                                 // _emailController.text = "ratndeep@gmail.com" ;
                                 // _passwordController.text = "Rajratna@121" ;
                                 // _addressController.text = "Bhim wadi, thool layout, sindhi meghe, wardha, 442001" ;
+
+
+                                if ( _gender.isEmpty || _gender == '') {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                          content: Text("Chakka "),
+                                      ),
+                                  );
+                                }
+
                                 if (_formKey.currentState!.validate()) {
                                   // to collect all form values at once after validation.
                                   _formKey.currentState!.save(); // // This will trigger onSaved()
                                   debugPrint("Processing Data........");
                                   debugPrint("Password : $_password");
-
+                                  debugPrint("Gender : $_gender");
                                   // debugPrint(_password);
                                 } else {
                                   debugPrint("Please Fill all Details Properly");
