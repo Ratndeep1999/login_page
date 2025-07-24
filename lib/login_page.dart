@@ -130,6 +130,7 @@ class _LoginPageState extends State<LoginPage> {
         },
         onChanged: (value) {  // Now _password always contains (Real time) latest input
           _password = value ;
+          _formKey.currentState!.validate();
         },
         minLines: 1,
         cursorHeight: 20,
@@ -142,9 +143,7 @@ class _LoginPageState extends State<LoginPage> {
               Icon(Icons.visibility) ,
             onPressed: () {
                 _isPasswordVisible = !_isPasswordVisible ;
-                setState(() {
-
-                });
+                setState(() {});
             },
           ),
           hintText: "eg. abc@123",
@@ -167,7 +166,7 @@ class _LoginPageState extends State<LoginPage> {
       child: TextFormField(
         controller: _conformPasswordController,
         validator: (value) {
-          if (_password != value ) {
+          if ( _password != value ) {
             return "Password and Conform Password are not same";
           }
           return null;
@@ -191,9 +190,7 @@ class _LoginPageState extends State<LoginPage> {
             Icon(Icons.visibility) ,
             onPressed: () {
               _isConformPasswordVisible = !_isConformPasswordVisible ;
-              setState(() {
-
-              });
+              setState(() {});
             },
           ),
           hintText: "eg. abc@123",
@@ -257,6 +254,9 @@ class _LoginPageState extends State<LoginPage> {
           if ( value == null || value.isEmpty ) {
             return "Please enter your address" ;
           }
+          if ( value.length < 10 ) {
+            return "Address is too short" ;
+          }
           return null ;
         },
         minLines: 1,
@@ -296,7 +296,7 @@ class _LoginPageState extends State<LoginPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: 12),
+                  SizedBox( height: MediaQuery.of(context).size.height * 0.02 ),
 
                   Padding(
                     padding: const EdgeInsets.only(bottom: 5, left: 12),
@@ -306,7 +306,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   _buildName(), // for name
-                  SizedBox(height: 6),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.0001 ),
 
                   Padding(
                     padding: const EdgeInsets.only(bottom: 5, left: 12),
@@ -316,7 +316,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   _buildEmail(), // for email
-                  SizedBox(height: 6),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.0001 ),
 
                   Padding(
                     padding: const EdgeInsets.only(bottom: 5, left: 12),
@@ -326,7 +326,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   _buildPassword(), // for Password
-                  SizedBox(height: 6),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.0001 ),
 
                   Padding(
                     padding: const EdgeInsets.only(bottom: 5, left: 12),
@@ -336,7 +336,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   _buildConformPassword(), // for Conform Password
-                  SizedBox(height: 6),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.0001 ),
 
                   Padding(
                     padding: const EdgeInsets.only(bottom: 5, left: 12),
@@ -346,7 +346,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   _buildMobileNumber(), // for Conform Password
-                  // SizedBox(height: 6),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.0001 ),
 
                   Padding(
                     padding: const EdgeInsets.only(bottom: 5, left: 12),
@@ -356,18 +356,18 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   _buildAddress(),  // for address
-                  SizedBox(height: 6),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.0001 ),
 
-                  //SizedBox(height: 6),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.0001 ),
                   // Button
                   Center(
                     child: ElevatedButton(
                       onPressed: () {
 
-                        _nameController.text = "Ratndeep" ;
-                        _emailController.text = "ratndeep@gmail.com" ;
-                        _passwordController.text = "Rajratna@121" ;
-                        _addressController.text = "Bhim wadi, thool layout, sindhi meghe, wardha, 442001" ;
+                        // _nameController.text = "Ratndeep" ;
+                        // _emailController.text = "ratndeep@gmail.com" ;
+                        // _passwordController.text = "Rajratna@121" ;
+                        // _addressController.text = "Bhim wadi, thool layout, sindhi meghe, wardha, 442001" ;
 
                         if (_formKey.currentState!.validate()) {
                           // to collect all form values at once after validation.
