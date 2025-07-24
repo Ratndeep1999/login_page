@@ -181,6 +181,7 @@ class _LoginPageState extends State<LoginPage> {
           _formKey.currentState!.validate();
         },
         minLines: 1,
+        //maxLines: 2,
         cursorHeight: 20,
         decoration: InputDecoration(
           suffixIcon:
@@ -248,7 +249,8 @@ class _LoginPageState extends State<LoginPage> {
   // address field
   Widget _buildAddress() {
     return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.08,
+      width: MediaQuery.of(context).size.width * 0.4 ,
+      height: MediaQuery.of(context).size.height * 0.266,
       child: TextFormField(
         controller: _addressController,
         validator: ( value ) {
@@ -260,7 +262,8 @@ class _LoginPageState extends State<LoginPage> {
           }
           return null ;
         },
-        minLines: 1,
+        minLines: 6,
+        maxLines:7,
         decoration: InputDecoration(
           hintText: "eg. street name, city name, state, postal code",
           filled: true,
@@ -287,106 +290,126 @@ class _LoginPageState extends State<LoginPage> {
         toolbarHeight: 60,
         // shape: Border(bottom: BorderSide(width: 0.5)),
       ),
-      body: SingleChildScrollView(
-        // scrollDirection: Axis.vertical,
-        child: SafeArea(
-          child: Form(
-            key: _formKey,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox( height: MediaQuery.of(context).size.height * 0.02 ),
+      body: InkWell(
+        onTap: () {
+          // Close the keyboard when tapping outside
+          FocusScope.of(context).unfocus();
+        },
+        child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: SafeArea(
+            child: Form(
+              key: _formKey,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox( height: MediaQuery.of(context).size.height * 0.02 ),
 
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 5, left: 12),
-                    child: Text(
-                      "Enter Your Name : ",
-                      style: TextStyle(fontSize: 15),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 5, left: 12),
+                      child: Text(
+                        "Enter Your Name : ",
+                        style: TextStyle(fontSize: 15),
+                      ),
                     ),
-                  ),
-                  _buildName(), // for name
-                  SizedBox(height: MediaQuery.of(context).size.height * 0.0001 ),
+                    _buildName(), // for name
+                    SizedBox(height: MediaQuery.of(context).size.height * 0.0001 ),
 
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 5, left: 12),
-                    child: Text(
-                      "Enter Your Email : ",
-                      style: TextStyle(fontSize: 15),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 5, left: 12),
+                      child: Text(
+                        "Enter Your Email : ",
+                        style: TextStyle(fontSize: 15),
+                      ),
                     ),
-                  ),
-                  _buildEmail(), // for email
-                  SizedBox(height: MediaQuery.of(context).size.height * 0.0001 ),
+                    _buildEmail(), // for email
+                    SizedBox(height: MediaQuery.of(context).size.height * 0.0001 ),
 
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 5, left: 12),
-                    child: Text(
-                      "Password : ",
-                      style: TextStyle(fontSize: 15),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 5, left: 12),
+                      child: Text(
+                        "Password : ",
+                        style: TextStyle(fontSize: 15),
+                      ),
                     ),
-                  ),
-                  _buildPassword(), // for Password
-                  SizedBox(height: MediaQuery.of(context).size.height * 0.0001 ),
+                    _buildPassword(), // for Password
+                    SizedBox(height: MediaQuery.of(context).size.height * 0.0001 ),
 
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 5, left: 12),
-                    child: Text(
-                      "Conform Password : ",
-                      style: TextStyle(fontSize: 15),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 5, left: 12),
+                      child: Text(
+                        "Conform Password : ",
+                        style: TextStyle(fontSize: 15),
+                      ),
                     ),
-                  ),
-                  _buildConformPassword(), // for Conform Password
-                  SizedBox(height: MediaQuery.of(context).size.height * 0.0001 ),
+                    _buildConformPassword(), // for Conform Password
+                    SizedBox(height: MediaQuery.of(context).size.height * 0.0001 ),
 
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 5, left: 12),
-                    child: Text(
-                      "Mobile Number : ",
-                      style: TextStyle(fontSize: 15),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 5, left: 12),
+                      child: Text(
+                        "Mobile Number : ",
+                        style: TextStyle(fontSize: 15),
+                      ),
                     ),
-                  ),
-                  _buildMobileNumber(), // for Conform Password
-                  SizedBox(height: MediaQuery.of(context).size.height * 0.0001 ),
+                    _buildMobileNumber(), // for Conform Password
+                    SizedBox(height: MediaQuery.of(context).size.height * 0.0001 ),
 
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 5, left: 12),
-                    child: Text(
-                      "Address : ",
-                      style: TextStyle(fontSize: 15),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 5, left: 12),
+                      child: Text(
+                        "Address : ",
+                        style: TextStyle(fontSize: 15),
+                      ),
                     ),
-                  ),
-                  _buildAddress(),  // for address
-                  SizedBox(height: MediaQuery.of(context).size.height * 0.0001 ),
 
-                  SizedBox(height: MediaQuery.of(context).size.height * 0.0001 ),
-                  // Button
-                  Center(
-                    child: ElevatedButton(
-                      onPressed: () {
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
 
-                        // _nameController.text = "Ratndeep" ;
-                        // _emailController.text = "ratndeep@gmail.com" ;
-                        // _passwordController.text = "Rajratna@121" ;
-                        // _addressController.text = "Bhim wadi, thool layout, sindhi meghe, wardha, 442001" ;
+                        _buildAddress(),  // address custom widget
 
-                        if (_formKey.currentState!.validate()) {
-                          // to collect all form values at once after validation.
-                          _formKey.currentState!.save(); // // This will trigger onSaved()
-                          debugPrint("Processing Data........");
-                          debugPrint("Password : $_password");
+                        // for address
+                        // SizedBox(height: MediaQuery.of(context).size.height * 0.0001 ),
 
-                          // debugPrint(_password);
-                        } else {
-                          debugPrint("Please Fill all Details Properly");
-                        }
+                        // SizedBox(height: MediaQuery.of(context).size.height * 0.0001 ),
+                        // Button
+                        Column(
+                          children: [
+                            ElevatedButton(
+                              onPressed: () {
 
-                      },
-                      child: Text("Submit"),
+                                // _nameController.text = "Ratndeep" ;
+                                // _emailController.text = "ratndeep@gmail.com" ;
+                                // _passwordController.text = "Rajratna@121" ;
+                                // _addressController.text = "Bhim wadi, thool layout, sindhi meghe, wardha, 442001" ;
+
+                                if (_formKey.currentState!.validate()) {
+                                  // to collect all form values at once after validation.
+                                  _formKey.currentState!.save(); // // This will trigger onSaved()
+                                  debugPrint("Processing Data........");
+                                  debugPrint("Password : $_password");
+
+                                  // debugPrint(_password);
+                                } else {
+                                  debugPrint("Please Fill all Details Properly");
+                                }
+
+                              },
+                              child: Text("Submit"),
+                            ),
+                          ],
+                        ),
+
+                      ],
                     ),
-                  ),
 
-                ],
+
+
+                  ],
+                ),
               ),
             ),
           ),
