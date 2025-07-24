@@ -15,11 +15,8 @@ class _LoginPageState extends State<LoginPage> {
   bool _isPasswordVisible = true ;
   bool _isConformPasswordVisible = true ;
 
-
   // to store input data
   String _password = "" ;
-
-
 
   // Controllers
   final TextEditingController _nameController = TextEditingController();
@@ -28,7 +25,6 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _conformPasswordController = TextEditingController();
   final TextEditingController _mobileNumberController = TextEditingController();
   final TextEditingController _addressController = TextEditingController();
-
 
   // methods of widgets
   // name method
@@ -171,7 +167,7 @@ class _LoginPageState extends State<LoginPage> {
       child: TextFormField(
         controller: _conformPasswordController,
         validator: (value) {
-          if (value != _password) {
+          if (_password != value ) {
             return "Password and Conform Password are not same";
           }
           return null;
@@ -235,6 +231,10 @@ class _LoginPageState extends State<LoginPage> {
         // This restrict to input only digits not other char
         inputFormatters: [ FilteringTextInputFormatter.digitsOnly ],
         decoration: InputDecoration(
+          icon: Padding(
+            padding: const EdgeInsets.only(left: 8),
+            child: Icon(Icons.phone),
+          ),
           hintText: "eg. 8551 830 830",
           filled: true,
           fillColor: Colors.deepPurple.shade50,
@@ -249,18 +249,25 @@ class _LoginPageState extends State<LoginPage> {
 
   // address field
   Widget _buildAddress() {
-    return TextFormField(
-      controller: _addressController,
-      validator: ( value ) {
-        if ( value == null || value.isEmpty ) {
-          return "Please enter your address" ;
-        }
-        return null ;
-      },
-      decoration: InputDecoration(
-        border: OutlineInputBorder(
-          borderSide: BorderSide.none,
-          borderRadius: BorderRadius.circular(20),
+    return SizedBox(
+      height: MediaQuery.of(context).size.height * 0.08,
+      child: TextFormField(
+        controller: _addressController,
+        validator: ( value ) {
+          if ( value == null || value.isEmpty ) {
+            return "Please enter your address" ;
+          }
+          return null ;
+        },
+        minLines: 1,
+        decoration: InputDecoration(
+          hintText: "address",
+          filled: true,
+          fillColor: Colors.deepPurple.shade50,
+          border: OutlineInputBorder(
+            borderSide: BorderSide.none,
+            borderRadius: BorderRadius.circular(20),
+          ),
         ),
       ),
     );
@@ -339,7 +346,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   _buildMobileNumber(), // for Conform Password
-                  SizedBox(height: 6),
+                  // SizedBox(height: 6),
 
                   Padding(
                     padding: const EdgeInsets.only(bottom: 5, left: 12),
@@ -360,6 +367,7 @@ class _LoginPageState extends State<LoginPage> {
                         _nameController.text = "Ratndeep" ;
                         _emailController.text = "ratndeep@gmail.com" ;
                         _passwordController.text = "Rajratna@121" ;
+                        _addressController.text = "Bhim wadi, thool layout, sindhi meghe, wardha, 442001" ;
 
                         if (_formKey.currentState!.validate()) {
                           // to collect all form values at once after validation.
