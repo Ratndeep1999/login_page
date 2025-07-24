@@ -172,6 +172,7 @@ class _LoginPageState extends State<LoginPage> {
           return null;
         },
         obscureText: _isConformPasswordVisible,
+        obscuringCharacter: "*",
         // onChanged is triggered whenever the user types in the field.
         // parameter value holds what the user just typed.
         onChanged: (value) {
