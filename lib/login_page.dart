@@ -218,7 +218,15 @@ class _LoginPageState extends State<LoginPage> {
       child: TextFormField(
         controller: _mobileNumberController,
         validator: ( value ) {
-
+          if ( value == null || value.isEmpty) {
+            return "Please enter your mobile number" ;
+          }
+          if ( value.contains(' ')) {
+            return "Space is not allow";
+          }
+          if ( value.length != 10 ) {
+            return "";
+          }
         },
         keyboardType: TextInputType.number,
         // This restrict to input only digits not other char
