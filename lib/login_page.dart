@@ -266,7 +266,7 @@ class _LoginPageState extends State<LoginPage> {
         minLines: 6,
         maxLines:8,
         decoration: InputDecoration(
-          hintText: "eg. street name, city name, state, postal code",
+          hintText: "eg. street name, city name, postal code, state",
           filled: true,
           fillColor: Colors.deepPurple.shade50,
           border: OutlineInputBorder(
