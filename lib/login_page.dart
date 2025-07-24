@@ -280,28 +280,36 @@ class _LoginPageState extends State<LoginPage> {
   
   // gender field
   Widget _buildGender() {
-    return Row(
-      children: [
-        Radio(
-          // activeColor: Colors.black,
-            value: 'Male',
-            groupValue: _selectGender,
-            onChanged: (value) {
-              _selectGender = value ?? '' ;
-              setState(() {  });
-            }
-        ),
-
-        Radio(
-            // activeColor: Colors.black,
-            value: 'Male',
-            groupValue: _selectGender,
-            onChanged: (value) {
-              _selectGender = value ?? '' ;
-              setState(() {  });
-            }
-        ),
-      ],
+    return
+    //   Row(
+    //   children: [
+    //     Radio(
+    //       // activeColor: Colors.black,
+    //         value: 'Male',
+    //         groupValue: _selectGender,
+    //         onChanged: (value) {
+    //           _selectGender = value ?? '' ;
+    //           setState(() {  });
+    //         }
+    //     ),
+    //
+    //     Radio(
+    //         // activeColor: Colors.black,
+    //         value: 'Male',
+    //         groupValue: _selectGender,
+    //         onChanged: (value) {
+    //           _selectGender = value ?? '' ;
+    //           setState(() {  });
+    //         }
+    //     ),
+    //   ],
+    // );
+    RadioListTile(
+        value: "Male",
+        groupValue: _selectGender,
+        onChanged: ( value ) {
+          _selectGender = value ?? ' ' ;
+        }
     );
   }
 
