@@ -443,7 +443,7 @@ class _LoginPageState extends State<LoginPage> {
                                 // _addressController.text = "Bhim wadi, thool layout, sindhi meghe, wardha, 442001" ;
 
 
-                                if ( _gender.isEmpty || _gender == '') {
+                                if ( _gender.isEmpty || _gender == '' || _gender == 'Not selected' ) {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(
                                           content: Text("Chakka "),
