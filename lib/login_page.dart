@@ -225,9 +225,11 @@ class _LoginPageState extends State<LoginPage> {
             return "Space is not allow";
           }
           if ( value.length != 10 ) {
-            return "";
+            return "Mobile number must be 10 digits";
           }
+          return null ;
         },
+        maxLength: 10,
         keyboardType: TextInputType.number,
         // This restrict to input only digits not other char
         inputFormatters: [ FilteringTextInputFormatter.digitsOnly ],
