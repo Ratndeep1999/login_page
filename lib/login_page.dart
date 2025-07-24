@@ -27,6 +27,7 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _conformPasswordController = TextEditingController();
   final TextEditingController _mobileNumberController = TextEditingController();
+  final TextEditingController _addressController = TextEditingController();
 
 
   // methods of widgets
@@ -246,6 +247,25 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
+  // address field
+  Widget _buildAddress() {
+    return TextFormField(
+      controller: _addressController,
+      validator: ( value ) {
+        if ( value == null || value.isEmpty ) {
+          return "Please enter your address" ;
+        }
+        return null ;
+      },
+      decoration: InputDecoration(
+        border: OutlineInputBorder(
+          borderSide: BorderSide.none,
+          borderRadius: BorderRadius.circular(20),
+        ),
+      ),
+    );
+  }
+
 
 
   @override
@@ -278,7 +298,7 @@ class _LoginPageState extends State<LoginPage> {
                       style: TextStyle(fontSize: 15),
                     ),
                   ),
-                  _buildName(), // fro name
+                  _buildName(), // for name
                   SizedBox(height: 6),
 
                   Padding(
@@ -319,6 +339,16 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   _buildMobileNumber(), // for Conform Password
+                  SizedBox(height: 6),
+
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 5, left: 12),
+                    child: Text(
+                      "Address : ",
+                      style: TextStyle(fontSize: 15),
+                    ),
+                  ),
+                  _buildAddress(),  // for address
                   SizedBox(height: 6),
 
                   //SizedBox(height: 6),
