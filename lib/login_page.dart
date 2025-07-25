@@ -17,7 +17,12 @@ class _LoginPageState extends State<LoginPage> {
   String _gender = 'Not selected';
 
   // to store input data
+  String _name = '' ;
+  String _email = '' ;
   String _password = "" ;
+  String _conformPassword = '' ;
+  String _mobileNumber = '' ;
+  String _address = '' ;
 
   // Controllers
   final TextEditingController _nameController = TextEditingController();
@@ -46,6 +51,9 @@ class _LoginPageState extends State<LoginPage> {
             return "Please enter letters only";
           }
           return null;
+        },
+        onSaved: (value) {
+          _name = value ?? '' ;
         },
         minLines: 1,
         cursorHeight: 20,
@@ -82,6 +90,9 @@ class _LoginPageState extends State<LoginPage> {
             return "Please enter a valid email address";
           }
           return null;
+        },
+        onSaved: (val) {
+          _email = val ?? '' ;
         },
         minLines: 1,
         cursorHeight: 20,
@@ -172,6 +183,9 @@ class _LoginPageState extends State<LoginPage> {
           }
           return null;
         },
+        onSaved: ( val ) {
+          _conformPassword = val ?? '' ;
+        },
         obscureText: _isConformPasswordVisible,
         obscuringCharacter: "*",
         // onChanged is triggered whenever the user types in the field.
@@ -226,6 +240,9 @@ class _LoginPageState extends State<LoginPage> {
           }
           return null ;
         },
+        onSaved: (number) {
+          _mobileNumber = number ?? '' ;
+        },
         maxLength: 10,
         keyboardType: TextInputType.number,
         // This restrict to input only digits not other char
@@ -262,6 +279,9 @@ class _LoginPageState extends State<LoginPage> {
             return "Address is too short" ;
           }
           return null ;
+        },
+        onSaved: ( address ) {
+          _address = address ?? '' ;
         },
         minLines: 7,
         maxLines:12,
@@ -455,9 +475,14 @@ class _LoginPageState extends State<LoginPage> {
                                   // to collect all form values at once after validation.
                                   _formKey.currentState!.save(); // This will trigger onSaved()
                                   debugPrint("Processing Data........");
+                                  debugPrint("Name : $_name");
+                                  debugPrint("Email : $_email");
                                   debugPrint("Password : $_password");
+                                  debugPrint("Conform Password : $_conformPassword");
+                                  debugPrint("Mobile No. : $_mobileNumber");
+
                                   debugPrint("Gender : $_gender");
-                                  // debugPrint(_password);
+
                                 } else {
                                   debugPrint("Please Fill all Details Properly");
                                 }
