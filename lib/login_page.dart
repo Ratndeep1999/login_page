@@ -16,7 +16,7 @@ class _LoginPageState extends State<LoginPage> {
   bool _isConformPasswordVisible = true ;
   String _gender = 'Not selected';
 
-  // to store input data
+  // To store input data
   String _name = '' ;
   String _email = '' ;
   String _password = "" ;
