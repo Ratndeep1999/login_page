@@ -480,7 +480,7 @@ class _LoginPageState extends State<LoginPage> {
                                   debugPrint("Password : $_password");
                                   debugPrint("Conform Password : $_conformPassword");
                                   debugPrint("Mobile No. : $_mobileNumber");
-
+                                  debugPrint("Address : $_address");
                                   debugPrint("Gender : $_gender");
 
                                 } else {
