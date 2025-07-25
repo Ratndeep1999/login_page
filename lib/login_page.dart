@@ -14,7 +14,6 @@ class _LoginPageState extends State<LoginPage> {
   // for password visible
   bool _isPasswordVisible = true ;
   bool _isConformPasswordVisible = true ;
-  String _gender = 'Not selected';
 
   // To store input data
   String _name = '' ;
@@ -23,6 +22,7 @@ class _LoginPageState extends State<LoginPage> {
   String _conformPassword = '' ;
   String _mobileNumber = '' ;
   String _address = '' ;
+  String _gender = 'Not selected';
 
   // Controllers
   final TextEditingController _nameController = TextEditingController();
