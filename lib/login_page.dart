@@ -353,6 +353,8 @@ class _LoginPageState extends State<LoginPage> {
         // shape: Border(bottom: BorderSide(width: 0.5)),
       ),
       body: InkWell(
+        splashColor: Colors.transparent, // single tap splash
+        highlightColor: Colors.transparent, // multiple tap splash
         onTap: () {
           // Close the keyboard when tapping outside
           FocusScope.of(context).unfocus();
