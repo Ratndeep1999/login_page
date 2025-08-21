@@ -16,5 +16,5 @@ For help getting started with Flutter development, view the
 samples, guidance on mobile development, and a full API reference.
 
 ![login page](assets/login_page_ui.png)
-![login page with validation](assets/fields with all validations.png)
-![filled login page](assets/filled login page ui.png)
+![login page with validation](assets/fields_with_all_validations.png)
+![filled login page](assets/filled_login_page_ui.png)
